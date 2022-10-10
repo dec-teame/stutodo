@@ -19,7 +19,9 @@ return new class extends Migration
             $table->text('description');
             $table->date('deadline');
             $table->integer('importance');
-            $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
+            // afterはcolumnをaddするときにのみ使用可．新規作成時は使用不可．
+            // $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();\// $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             //$table->boolean('repeat');
             //$table->double('achievement', 3, 2);
@@ -33,6 +35,11 @@ return new class extends Migration
      */
     public function down()
     {
+        // userテーブルとの連携を解除してtodosテーブルを削除
+        Schema::table('todos', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);       // userテーブルとの連携を解除
+            $table->dropColumn(['user_id']);        // user_idカラムを削除
+        });
         Schema::dropIfExists('todos');
     }
 };
