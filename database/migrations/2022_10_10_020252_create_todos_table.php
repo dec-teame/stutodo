@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('deadline');
             $table->integer('importance');
             // afterはcolumnをaddするときにのみ使用可．新規作成時は使用不可．
-            // $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();\// $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
+            // $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
             //$table->boolean('repeat');
