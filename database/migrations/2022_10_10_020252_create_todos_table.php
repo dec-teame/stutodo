@@ -33,6 +33,11 @@ return new class extends Migration
      */
     public function down()
     {
+        // userテーブルとの連携を解除してtodosテーブルを削除
+        Schema::table('todos', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);       // userテーブルとの連携を解除
+            $table->dropColumn(['user_id']);        // user_idカラムを削除
+        });
         Schema::dropIfExists('todos');
     }
 };
