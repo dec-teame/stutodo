@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->string('todo');
-            $table->text('detail');
-            $table->date('limit');
-            $table->double('achievement', 3, 2);
-            $table->boolean('repeat');
+            $table->string('task');
+            $table->text('description');
+            $table->datetime('deadline');
+            $table->integer('importance');
             $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
+            //$table->boolean('repeat');
+            //$table->double('achievement', 3, 2);
         });
     }
 
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('todos');
+        // Schema::dropIfExists('todos');
     }
 };
