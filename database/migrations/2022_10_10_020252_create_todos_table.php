@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('task');
             $table->text('description');
-            $table->datetime('deadline');
+            $table->date('deadline');
             $table->integer('importance');
             $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        // Schema::dropIfExists('todos');
+        Schema::dropIfExists('todos');
     }
 };
