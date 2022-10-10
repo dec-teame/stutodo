@@ -1,3 +1,28 @@
+# VSCode
+VSCodeでmarkdownをプレビューするときは、
+`.md`ファイルを編集している状態で、`Ctrl+K`, `V`を押すと、横の画面に表示される。
+
+
+# Git
+## commit message
+参考: https://qiita.com/itosho/items/9565c6ad2ffc24c09364
+
+- fix：バグ修正
+- add：新規（ファイル）機能追加
+- update：機能修正（バグではない）
+- remove：削除（ファイル）
+
+```
+# commit messageのexample
+
+git add .
+git commit -m "[fix] UIのバグを修正"
+# git commit -m "[add] migrationファイルを追加"
+# git commit -m "[update] 詳細画面を修正"
+# git commit -m "[remove] migrationファイルを削除"
+```
+
+
 # laratter
 ## 開発環境
 - Laravel Sail（ララベル セイル）  

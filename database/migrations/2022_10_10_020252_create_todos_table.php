@@ -15,13 +15,16 @@ return new class extends Migration
     {
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
-            $table->string('todo');
-            $table->text('detail');
-            $table->date('limit');
-            $table->double('achievement', 3, 2);
-            $table->boolean('repeat');
-            $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
+            $table->string('task');
+            $table->text('description');
+            $table->date('deadline');
+            $table->integer('importance');
+            // afterはcolumnをaddするときにのみ使用可．新規作成時は使用不可．
+            // $table->foreignId('user_id')->after('id')->nullable()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
+            //$table->boolean('repeat');
+            //$table->double('achievement', 3, 2);
         });
     }
 
@@ -32,6 +35,11 @@ return new class extends Migration
      */
     public function down()
     {
+        // userテーブルとの連携を解除してtodosテーブルを削除
+        Schema::table('todos', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);       // userテーブルとの連携を解除
+            $table->dropColumn(['user_id']);        // user_idカラムを削除
+        });
         Schema::dropIfExists('todos');
     }
 };
