@@ -3,6 +3,7 @@
 // ./vendor/bin/sail php artisan make:seeder TodosSeeder 
 
 // to generate seed data, run command below
+// todoのシードデータを追加するには以下のコマンドを実行してください。
 // ./vendor/bin/sail php artisan db:seed --class=TodosSeeder
 
 
