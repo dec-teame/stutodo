@@ -45,6 +45,6 @@ class User extends Authenticatable
     // userとtodoは一対多の関係
     public function userTodos()
       {
-        return $this->hasMany(Todos::class);
+        return $this->hasMany(Todo::class);
       }
 }
