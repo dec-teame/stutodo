@@ -1,15 +1,15 @@
 <?php
 // to add this file, run command below
-// sail artisan make:factory TodosFactory --model==Todos
+// sail artisan make:factory TodoFactory --model=Todo
 
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\=Todos>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Todo>
  */
-class TodosFactory extends Factory
+class TodoFactory extends Factory
 {
     /**
      * Define the model's default state.
