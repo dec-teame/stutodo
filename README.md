@@ -124,6 +124,10 @@ CSS が効いていない気がする．．という場合は下記コマンド�
 - app/Models/Tweet.php に関数を作成
 - app/Http/Controllers/TweetController.php の index()を編集
 
+## fakeデータの作成
+- [[Laravel5.1]Fakerチートシート](https://qiita.com/tosite0345/items/1d47961947a6770053af)
+- [LaravelでFakerを使って、テストデータを作成する方法！](https://codelikes.com/laravel-faker/)
+
 
 ## オススメサイト
 - [VSCodeをLaravel超特化型にする 最高の拡張機能10選まとめ](https://yurupro.cloud/2132/)
