@@ -14,11 +14,11 @@
             @csrf
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="task">task</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="task" id="task" placeholder="taskを入力してください。">
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="task" id="task" value="{{ old('task') }}" placeholder="taskを入力してください。">
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="deadline">deadline</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="date" name="deadline" id="deadline" placeholder="期限を入力してください。">
+              <input class="border py-2 px-3 text-grey-darkest" type="date" name="deadline" id="deadline" value="{{ old('deadline') }}" placeholder="期限を入力してください。">
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="importance">importance</label>
@@ -31,7 +31,7 @@
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">Description</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="description" id="description" placeholder="詳細を入力してください。">
+              <input class="border py-2 px-3 text-grey-darkest" type="text" name="description" id="description" value="{{ old('description') }}" placeholder="詳細を入力してください。">
             </div>
             <button type="submit" class="w-full py-3 mt-6 font-medium tracking-widest text-white uppercase bg-black shadow-lg focus:outline-none hover:bg-gray-900 hover:shadow-none">
                 送信
