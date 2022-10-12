@@ -52,9 +52,9 @@ class TodoController extends Controller
         // バリデーション:エラーの時
         if ($validator->fails()) {
             return redirect()
-            ->route('todo.create')
-            ->withInput()
-            ->withErrors($validator);
+                ->route('todo.create')
+                ->withInput()
+                ->withErrors($validator);
         }
         // 作成されたTodoデータをDBに登録
         $result = Todo::create($request->all());
@@ -72,7 +72,7 @@ class TodoController extends Controller
     public function show($id)
     {
         $todo = Todo::find($id);
-  return view('todo.show', compact('todo'));
+        return view('todo.show', compact('todo'));
     }
 
     /**
