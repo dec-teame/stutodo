@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Validator;
 use App\Models\Todo;
 
-class TaskController extends Controller
+class TodoController extends Controller
 {
     /**
      * Display a listing of the resource.
