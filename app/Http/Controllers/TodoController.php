@@ -18,7 +18,7 @@ class TodoController extends Controller
     {
         // $todos = [];
         $todos = Todo::getAllOrderByDeadline();
-        ddd($todos);
+        // ddd($todos);
         return view('todo.index', compact('todos'));
     }
 
