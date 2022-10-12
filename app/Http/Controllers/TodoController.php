@@ -29,7 +29,6 @@ class TodoController extends Controller
      */
     public function create()
     {
-        //
         return view('todo.create');
     }
 
@@ -41,7 +40,27 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // バリデーション
+        $validator = Validator::make($request->all(), [
+            // 検証ルールを追加
+            // between:a, b -> aからbまでの数字
+            'task' => 'required | max:191',
+            'deadline' => 'required',
+            'importance' => 'required | integer | between:1,3',
+            'description' => 'required',
+        ]);
+        // バリデーション:エラーの時
+        if ($validator->fails()) {
+            return redirect()
+            ->route('todo.create')
+            ->withInput()
+            ->withErrors($validator);
+        }
+        // 作成されたTodoデータをDBに登録
+        $result = Todo::create($request->all());
+
+        // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
+        return redirect()->route('todo.index');
     }
 
     /**
