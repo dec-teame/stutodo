@@ -22,6 +22,9 @@
                     <h3 class="text-left font-bold text-lg text-grey-dark">Task: {{$todo->task}}</h3>
                     <h3 class="text-left font-bold text-lg text-grey-dark">Importance: {{$todo->importance}}</h3>
                     <h3 class="text-left font-bold text-lg text-grey-dark">Deadline: {{$todo->deadline}}</h3>
+                    <a href="{{ route('todo.show',$todo->id) }}">
+                      <h3 class="text-left font-bold text-lg text-grey-dark">{{$todo->todo}}</h3>
+                    </a>
                   <div class="flex">
                     <!-- 更新ボタン -->
                     <!-- 削除ボタン -->
