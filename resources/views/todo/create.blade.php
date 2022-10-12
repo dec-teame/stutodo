@@ -18,11 +18,11 @@
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="deadline">deadline</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="deadline" id="deadline">
+              <input class="border py-2 px-3 text-grey-darkest" type="date" name="deadline" id="deadline">
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="importance">importance</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="text" name="importance" id="importance">
+              <input class="border py-2 px-3 text-grey-darkest" type="number" name="importance" id="importance">
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">Description</label>
