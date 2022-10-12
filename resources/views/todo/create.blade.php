@@ -22,7 +22,12 @@
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="importance">importance</label>
-              <input class="border py-2 px-3 text-grey-darkest" type="number" name="importance" id="importance" placeholder="重要度を1~3で入力してください。">
+              <select name="importance" id="importance">
+                <option value="1">☆</option>
+                <option value="2">☆☆</option>
+                <option value="3">☆☆☆</option>
+              </select>
+              {{-- <input class="border py-2 px-3 text-grey-darkest" type="number" name="importance" id="importance" placeholder="重要度を1~3で入力してください。"> --}}
             </div>
             <div class="flex flex-col mb-4">
               <label class="mb-2 uppercase font-bold text-lg text-grey-darkest" for="description">Description</label>
