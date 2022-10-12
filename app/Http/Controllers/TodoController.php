@@ -16,8 +16,10 @@ class TodoController extends Controller
      */
     public function index()
     {
-        //
-        return view('todo.index');
+        // $todos = [];
+        $todos = Todo::getAllOrderByDeadline();
+        // ddd($todos);
+        return view('todo.index', compact('todos'));
     }
 
     /**
