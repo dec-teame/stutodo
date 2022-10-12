@@ -14,7 +14,9 @@ use App\Http\Controllers\TodoController;
 |
 */
 
-Route::resource('todo', TodoController::class);
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('todo', TodoController::class);
+});
 
 Route::get('/', function () {
     return view('welcome');
