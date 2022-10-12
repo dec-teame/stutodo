@@ -96,7 +96,21 @@ class TodoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //バリデーション
+        $validator = Validator::make($request->all(), [
+            'todo' => 'required | max:191',
+            'description' => 'required',
+        ]);
+        //バリデーション:エラー
+        if ($validator->fails()) {
+            return redirect()
+            ->route('todo.edit', $id)
+            ->withInput()
+            ->withErrors($validator);
+        }
+        //データ更新処理
+        $result = Todo::find($id)->update($request->all());
+        return redirect()->route('todo.index');
     }
 
     /**
