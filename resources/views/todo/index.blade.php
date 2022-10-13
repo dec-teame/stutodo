@@ -51,7 +51,7 @@
                                                 @csrf
                                                 <button type="submit"
                                                     class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline"
-                                                    onclick="return alert('本当に削除しますか?')">
+                                                    onclick="return window.confirm('本当に削除しますか?')">
                                                     <svg class="h-6 w-6 text-gray-500" fill="none"
                                                         viewBox="0 0 24 24" stroke="black">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
