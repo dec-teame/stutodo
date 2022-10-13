@@ -12,7 +12,7 @@
                     <div class="mb-6">
                         <div class="flex flex-col mb-4">
                             <p class="mb-2 uppercase font-bold text-lg text-grey-darkest">Task</p>
-                            <p class="py-2 px-3 text-grey-darkest" id="todo">
+                            <p class="py-2 px-3 text-grey-darkest" id="tweet">
                                 {{ $todo->task }}
                             </p>
                         </div>
