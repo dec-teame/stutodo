@@ -30,14 +30,27 @@
                                                 {{ $todo->deadline }}</h3>
                                         </a>
                                         <div class="flex">
-                                            <!-- 更新ボタン -->
+                                             <!-- 更新ボタン -->
+                                            <form action="{{ route('todo.edit', $todo->id) }}" method="GET"
+                                                class="text-left">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline">
+                                                    <svg class="h-6 w-6 text-teal-500"   width="24"  height="24"  
+                                                    viewBox="0 0 24 24"  xmlns="http://www.w3.org/2000/svg"  fill="none"  stroke="teal"  
+                                                    stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  
+                                                    <path d="M12 20h9" />  <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                                                    </svg>
+                                                </button>
+                                            </form>
                                             <!-- 削除ボタン -->
                                             <form action="{{ route('todo.destroy', $todo->id) }}" method="POST"
                                                 class="text-left">
                                                 @method('delete')
                                                 @csrf
                                                 <button type="submit"
-                                                    class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline">
+                                                    class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline"
+                                                    onclick="return window.confirm('本当に削除しますか?')">
                                                     <svg class="h-6 w-6 text-gray-500" fill="none"
                                                         viewBox="0 0 24 24" stroke="black">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
