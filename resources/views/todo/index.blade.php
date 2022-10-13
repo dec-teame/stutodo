@@ -30,7 +30,7 @@
                                                 {{ $todo->deadline }}</h3>
                                         </a>
                                         <div class="flex">
-                                             <!-- 更新ボタン -->
+                                             <!-- 更新ボタンkk -->
                                             <form action="{{ route('todo.edit', $todo->id) }}" method="GET"
                                                 class="text-left">
                                                 @csrf
