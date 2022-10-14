@@ -18,8 +18,6 @@ class TodoController extends Controller
      */
     public function index()
     {
-        // $todos = [];
-        // $todos = Todo::getAllOrderByDeadline();
         $todos = User::query()
             ->find(Auth::user()->id)
             ->userTodos()
