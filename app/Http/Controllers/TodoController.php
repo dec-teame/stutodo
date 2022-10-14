@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Models\Todo;
+use App\Models\User;
+use Auth;
 
 class TodoController extends Controller
 {
@@ -17,7 +19,12 @@ class TodoController extends Controller
     public function index()
     {
         // $todos = [];
-        $todos = Todo::getAllOrderByDeadline();
+        // $todos = Todo::getAllOrderByDeadline();
+        $todos = User::query()
+            ->find(Auth::user()->id)
+            ->userTodos()
+            ->orderByDesc('deadline')->get();
+
         // ddd($todos);
         return view('todo.index', compact('todos'));
     }
@@ -56,8 +63,10 @@ class TodoController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
+        // user_idをマージする
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         // 作成されたTodoデータをDBに登録
-        $result = Todo::create($request->all());
+        $result = Todo::create($data);
 
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('todo.index');
@@ -110,8 +119,12 @@ class TodoController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
+
+        // user_idをマージする
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         //データ更新処理
-        $result = Todo::find($id)->update($request->all());
+        // $result = Todo::find($id)->update($request->all());
+        $result = Todo::find($id)->update($data);
         return redirect()->route('todo.index');
     }
 
