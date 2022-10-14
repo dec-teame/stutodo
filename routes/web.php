@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,8 @@ use App\Http\Controllers\TodoController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('todo', TodoController::class);
-    Route::get('calendar', function(){return view('calendar');});
+    // Route::get('calendar', function(){return view('calendar');});
+    Route::get('calendar', [CalenderController::class, 'index']);
 });
 
 Route::get('/', function () {
