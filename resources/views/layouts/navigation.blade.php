@@ -28,6 +28,12 @@
             {{ __('新規作成') }}
           </x-nav-link>
         </div>
+        <!-- 🔽 カレンダーページへのリンクを追加 -->
+        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+          <x-nav-link :href="route('calendar.index')" :active="request()->routeIs('calendar.index')">
+            {{ __('カレンダー') }}
+          </x-nav-link>
+        </div>
       </div>
 
       <!-- Settings Dropdown -->
@@ -88,6 +94,12 @@
     <div class="pt-2 pb-3 space-y-1">
       <x-responsive-nav-link :href="route('todo.create')" :active="request()->routeIs('todo.create')">
         {{ __('新規作成') }}
+      </x-responsive-nav-link>
+    </div>
+    <!--  カレンダーページへのリンクを追加 -->
+    <div class="pt-2 pb-3 space-y-1">
+      <x-responsive-nav-link :href="route('calendar.index')" :active="request()->routeIs('calendar.index')">
+        {{ __('カレンダー') }}
       </x-responsive-nav-link>
     </div>
 
