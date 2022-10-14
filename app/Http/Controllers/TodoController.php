@@ -63,8 +63,10 @@ class TodoController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
+        // user_idをマージする
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         // 作成されたTodoデータをDBに登録
-        $result = Todo::create($request->all());
+        $result = Todo::create($data);
 
         // ルーティング「todo.index」にリクエスト送信（一覧ページに移動）
         return redirect()->route('todo.index');
@@ -117,8 +119,12 @@ class TodoController extends Controller
             ->withInput()
             ->withErrors($validator);
         }
+
+        // user_idをマージする
+        $data = $request->merge(['user_id' => Auth::user()->id])->all();
         //データ更新処理
-        $result = Todo::find($id)->update($request->all());
+        // $result = Todo::find($id)->update($request->all());
+        $result = Todo::find($id)->update($data);
         return redirect()->route('todo.index');
     }
 
