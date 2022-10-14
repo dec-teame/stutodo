@@ -98,7 +98,9 @@ class TodoController extends Controller
     {
         //バリデーション
         $validator = Validator::make($request->all(), [
-            'todo' => 'required | max:191',
+            'task' => 'required | max:191',
+            'deadline' => 'required',
+            'importance' => 'required | integer | between:1,3',
             'description' => 'required',
         ]);
         //バリデーション:エラー
