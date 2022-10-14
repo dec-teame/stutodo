@@ -18,7 +18,7 @@ use App\Http\Controllers\CalendarController;
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('todo', TodoController::class);
     // Route::get('calendar', function(){return view('calendar');});
-    Route::get('calendar', [CalenderController::class, 'index']);
+    Route::get('calendar', [CalendarController::class, 'index']);
 });
 
 Route::get('/', function () {
