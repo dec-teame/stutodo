@@ -120,11 +120,11 @@ class TodoController extends Controller
             ->withErrors($validator);
         }
 
-        // user_idをマージする
-        $data = $request->merge(['user_id' => Auth::user()->id])->all();
-        //データ更新処理
-        // $result = Todo::find($id)->update($request->all());
-        $result = Todo::find($id)->update($data);
+        // 要注意！！
+        // データ更新処理ではuser_idはマージしない。
+        // 同時に2つのユーザーでログインしているとアクティブ状態のユーザーのidが
+        // Auth::user()となる。
+        $result = Todo::find($id)->update($request->all());
         return redirect()->route('todo.index');
     }
 
