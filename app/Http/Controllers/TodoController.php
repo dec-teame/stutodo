@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use Validator;
 use App\Models\Todo;
+use App\Models\User;
+use Auth;
 
 class TodoController extends Controller
 {
@@ -17,7 +19,12 @@ class TodoController extends Controller
     public function index()
     {
         // $todos = [];
-        $todos = Todo::getAllOrderByDeadline();
+        // $todos = Todo::getAllOrderByDeadline();
+        $todos = User::query()
+            ->find(Auth::user()->id)
+            ->userTodos()
+            ->orderByDesc('deadline')->get();
+
         // ddd($todos);
         return view('todo.index', compact('todos'));
     }
