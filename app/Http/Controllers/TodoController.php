@@ -18,12 +18,11 @@ class TodoController extends Controller
      */
     public function index()
     {
-        // $todos = [];
-        // $todos = Todo::getAllOrderByDeadline();
         $todos = User::query()
             ->find(Auth::user()->id)
             ->userTodos()
-            ->orderByDesc('deadline')->get();
+            ->orderByDesc('deadline')
+            ->paginate(5);
 
         // ddd($todos);
         return view('todo.index', compact('todos'));

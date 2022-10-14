@@ -13,9 +13,4 @@ class Todo extends Model
     'created_at',
     'updated_at',
     ];
-    
-    public static function getAllOrderByDeadline()
-    {
-        return self::orderBy('deadline', 'desc')->get();
-    }
 }
