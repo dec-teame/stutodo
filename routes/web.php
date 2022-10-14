@@ -16,6 +16,7 @@ use App\Http\Controllers\TodoController;
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('todo', TodoController::class);
+    Route::get('calendar', function(){return view('calendar');});
 });
 
 Route::get('/', function () {
@@ -26,7 +27,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/calendar', function () {
-    return view('calendar');
-});
+// Route::get('/calendar', function () {
+//     return view('calendar');
+// });
 require __DIR__.'/auth.php';
