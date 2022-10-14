@@ -26,4 +26,7 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/calendar', function () {
+    return view('calendar');
+});
 require __DIR__.'/auth.php';
