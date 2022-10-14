@@ -23,7 +23,8 @@ class TodoController extends Controller
         $todos = User::query()
             ->find(Auth::user()->id)
             ->userTodos()
-            ->orderByDesc('deadline')->get();
+            ->orderByDesc('deadline')
+            ->paginate(5);
 
         // ddd($todos);
         return view('todo.index', compact('todos'));
