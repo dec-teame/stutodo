@@ -61,6 +61,29 @@
                                                     </svg>
                                                 </button>
                                             </form>
+                                            <!-- 完了ボタン -->
+                                            
+                                            <form action="{{ route('todo.finished',$todo) }}" method="POST" class="text-left">
+                                            @csrf
+                                            
+                                            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
+                                                @if ($todo->finished === 0)
+                                                <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
+                                                stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
+                                                <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
+                                                </svg> 
+                                                @else
+                                                <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
+                                                stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
+                                                <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
+                                                </svg>
+                                                @endif                                               
+                                            </button>
+                                            </form>
                                         </div>
                                     </td>
                                 </tr>

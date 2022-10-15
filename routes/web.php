@@ -16,6 +16,8 @@ use App\Http\Controllers\CalendarController;
 */
 
 Route::group(['middleware' => 'auth'], function () {
+    //タスク完了ボタンのURL
+    Route::post('todo/{todo}/finished',[TodoController::class, 'finished'])->name('todo.finished');
     Route::resource('todo', TodoController::class);
     // Route::get('calendar', function(){return view('calendar');});
     // 下のnameは、RouteIsで使用する。
