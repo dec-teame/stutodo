@@ -138,4 +138,12 @@ class TodoController extends Controller
         $result = Todo::find($id)->delete();
         return redirect()->route('todo.index');
     }
+
+    
+    public function finished(Request $request, $id)
+    {
+        $result = Todo::find($id)->update($request->all());
+        return redirect()->route('todo.index');
+    }
+    
 }
