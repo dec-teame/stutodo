@@ -123,6 +123,7 @@ class TodoController extends Controller
         // データ更新処理ではuser_idはマージしない。
         // 同時に2つのユーザーでログインしているとアクティブ状態のユーザーのidが
         // Auth::user()となる。
+
         $result = Todo::find($id)->update($request->all());
         return redirect()->route('todo.index');
     }
