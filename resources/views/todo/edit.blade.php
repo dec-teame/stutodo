@@ -28,6 +28,7 @@
                             <label class="mb-2 uppercase font-bold text-lg text-grey-darkest"
                                 for="importance">importance</label>
                             <select name="importance" id="importance">
+                                <option hidden>重要度を1~3で入力してください。</option>
                                 <option value="1">☆</option>
                                 <option value="2">☆☆</option>
                                 <option value="3">☆☆☆</option>
