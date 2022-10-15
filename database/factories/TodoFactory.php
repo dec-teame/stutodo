@@ -26,6 +26,7 @@ class TodoFactory extends Factory
             'user_id' => $this->faker->numberBetween($user_id, $user_id),
             // TODO ここはあらかじめタスクを登録しておきたい。
             // 'task' => $this->faker->realText($this->faker->numberBetween(5, 10)),
+            
             'task' => $this->faker->country(),
             'deadline' => $deadline_date->format('Y-m-d'),  // dateTimeをフォーマット変換 2022-10-11
             'importance' => $this->faker->numberBetween(1, 3),
