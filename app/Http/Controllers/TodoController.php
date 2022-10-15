@@ -79,8 +79,8 @@ class TodoController extends Controller
      */
     public function show($id)
     {
-        $todo = Todo::find($id);
-        return view('todo.show', compact('todo'));
+        // $todo = Todo::find($id);
+        // return view('todo.show', compact('todo'));
     }
 
     /**
@@ -114,9 +114,9 @@ class TodoController extends Controller
         //バリデーション:エラー
         if ($validator->fails()) {
             return redirect()
-            ->route('todo.edit', $id)
-            ->withInput()
-            ->withErrors($validator);
+                ->route('todo.edit', $id)
+                ->withInput()
+                ->withErrors($validator);
         }
 
         // 要注意！！
@@ -139,11 +139,24 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
     }
 
-    
+
     public function finished(Request $request, $id)
     {
         $result = Todo::find($id)->update($request->all());
         return redirect()->route('todo.index');
     }
-    
+
+    public function finished_list()
+    {
+        // $todos = User::query()
+        //     ->find(Auth::user()->id)
+        //     ->where('finished', true)
+        //     ->userTodos()
+        //     ->orderByDesc('deadline')
+        //     ->paginate(5);
+        $todos = [];
+
+        // ddd($todos);
+        return view('todo.index', compact('todos'));
+    }
 }
