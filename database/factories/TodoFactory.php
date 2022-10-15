@@ -31,6 +31,7 @@ class TodoFactory extends Factory
             'deadline' => $deadline_date->format('Y-m-d'),  // dateTimeをフォーマット変換 2022-10-11
             'importance' => $this->faker->numberBetween(1, 3),
             'description' => $this->faker->realText($this->faker->numberBetween(10, 20)),
+            'finished' => $this ->faker->boolean(50),   //引数の中身はTrueが出る確率
         ];
     }
 }
