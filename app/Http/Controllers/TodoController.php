@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Todo;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -115,9 +115,9 @@ class TodoController extends Controller
         //バリデーション:エラー
         if ($validator->fails()) {
             return redirect()
-            ->route('todo.edit', $id)
-            ->withInput()
-            ->withErrors($validator);
+                ->route('todo.edit', $id)
+                ->withInput()
+                ->withErrors($validator);
         }
 
         // 要注意！！
@@ -140,7 +140,7 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
     }
 
-    
+
     public function finished(Request $request, $id)
     {
         $update_finished = Todo::where('id', $id);
@@ -154,5 +154,20 @@ class TodoController extends Controller
         }
         return redirect()->route('todo.index');
     }
-    
+
+    public function finishedList()
+    {
+        $todos = User::query()
+            ->find(Auth::user()->id)
+            ->userTodos()
+            ->where('finished', true)
+            ->orderByDesc('deadline')
+            ->paginate(5);
+
+        $id = Auth::user();
+        $todo = Todo::find($id);
+
+        // ddd($todos);
+        return view('todo.index', compact('todos', 'todo'));
+    }
 }
