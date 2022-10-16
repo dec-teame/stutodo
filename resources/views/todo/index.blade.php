@@ -37,8 +37,11 @@
                                                 @csrf
                                                 <button type="submit"
                                                     class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline">
-                                                    <svg class="h-6 w-6 text-black"  fill="none" viewBox="0 0 24 24" stroke="black">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"/>
+                                                    <svg class="h-6 w-6 text-black" fill="none" viewBox="0 0 24 24"
+                                                        stroke="black">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                                     </svg>
 
                                                 </button>
@@ -51,40 +54,60 @@
                                                 <button type="submit"
                                                     class="mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-white py-1 px-2 focus:outline-none focus:shadow-outline"
                                                     onclick="return window.confirm('本当に削除しますか?')">
-                                                    <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
-                                                    stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                    <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="4" y1="7" x2="20" y2="7" />  
-                                                    <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" />  
-                                                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />  
-                                                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
+                                                    <svg class="h-6 w-6 text-black" width="24" height="24"
+                                                        viewBox="0 0 24 24" stroke-width="2" stroke="black"
+                                                        fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                                        <path stroke="none" d="M0 0h24v24H0z" />
+                                                        <line x1="4" y1="7" x2="20"
+                                                            y2="7" />
+                                                        <line x1="10" y1="11" x2="10"
+                                                            y2="17" />
+                                                        <line x1="14" y1="11" x2="14"
+                                                            y2="17" />
+                                                        <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />
+                                                        <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" />
                                                     </svg>
                                                 </button>
                                             </form>
                                             <!-- 完了ボタン -->
-                                            
-                                            <form action="{{ route('todo.finished',$todo) }}" method="POST" class="text-left">
-                                            @csrf
-                                            
-                                            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
-                                                @if ($todo->finished === 0)
-                                                <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
-                                                stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                <path stroke="none" d="M0 0h24v24H0z"/>  
-                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
-                                                <rect x="9" y="3" width="6" height="4" rx="2" />
-                                                </svg>
-                                                @else
-                                                <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
-                                                stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                <path stroke="none" d="M0 0h24v24H0z"/>  
-                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
-                                                <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
-                                                </svg>
-                                                @endif                                               
-                                            </button>
+
+                                            <form action="{{ route('todo.finished', $todo) }}" method="POST"
+                                                class="text-left">
+                                                @csrf
+
+                                                <button type="submit"
+                                                    class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
+                                                    @if ($todo->finished === 0)
+                                                        <svg class="h-6 w-6 text-black" width="24" height="24"
+                                                            viewBox="0 0 24 24" stroke-width="2" stroke="black"
+                                                            fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                                            <path
+                                                                d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />
+                                                            <rect x="9" y="3" width="6"
+                                                                height="4" rx="2" />
+                                                        </svg>
+                                                    @else
+                                                        <svg class="h-6 w-6 text-green-500" width="24"
+                                                            height="24" viewBox="0 0 24 24" stroke-width="2"
+                                                            stroke="green" fill="none" stroke-linecap="round"
+                                                            stroke-linejoin="round">
+                                                            <path stroke="none" d="M0 0h24v24H0z" />
+                                                            <path
+                                                                d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />
+                                                            <rect x="9" y="3" width="6"
+                                                                height="4" rx="2" />
+                                                            <path d="M9 14l2 2l4 -4" />
+                                                        </svg>
+                                                    @endif
+                                                </button>
                                             </form>
                                         </div>
                                     </td>
+
+
+
                                 </tr>
                             @endforeach
                         </tbody>
