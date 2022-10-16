@@ -143,7 +143,15 @@ class TodoController extends Controller
     
     public function finished(Request $request, $id)
     {
-        $result = Todo::find($id)->update($request->all());
+        $update_finished = Todo::where('id', $id);
+        $isFinished = $update_finished->value('finished');
+
+        // 完了なら0を、未完了なら1を返す
+        if ($isFinished) {
+            $update = $update_finished->update(['finished'=>0]);
+        } else {
+            $update = $update_finished->update(['finished'=>1]);
+        }
         return redirect()->route('todo.index');
     }
     
