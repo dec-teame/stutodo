@@ -21,6 +21,7 @@ class TodoController extends Controller
         $todos = User::query()
             ->find(Auth::user()->id)
             ->userTodos()
+            ->where('finished', false)
             ->orderByDesc('deadline')
             ->paginate(5);
 
@@ -148,9 +149,9 @@ class TodoController extends Controller
 
         // 完了なら0を、未完了なら1を返す
         if ($isFinished) {
-            $update = $update_finished->update(['finished'=>0]);
+            $update = $update_finished->update(['finished' => 0]);
         } else {
-            $update = $update_finished->update(['finished'=>1]);
+            $update = $update_finished->update(['finished' => 1]);
         }
         return redirect()->route('todo.index');
     }
