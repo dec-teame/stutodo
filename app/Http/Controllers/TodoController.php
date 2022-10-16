@@ -64,6 +64,7 @@ class TodoController extends Controller
         }
         // user_idをマージする
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $data = $request->merge(['finished' => 0])->all();
         // 作成されたTodoデータをDBに登録
         $result = Todo::create($data);
 
