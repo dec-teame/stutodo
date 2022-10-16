@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Validator;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Todo;
 use App\Models\User;
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 class TodoController extends Controller
 {
@@ -21,6 +21,7 @@ class TodoController extends Controller
         $todos = User::query()
             ->find(Auth::user()->id)
             ->userTodos()
+            ->where('finished', false)
             ->orderByDesc('deadline')
             ->paginate(5);
 
@@ -64,6 +65,7 @@ class TodoController extends Controller
         }
         // user_idをマージする
         $data = $request->merge(['user_id' => Auth::user()->id])->all();
+        $data = $request->merge(['finished' => 0])->all();
         // 作成されたTodoデータをDBに登録
         $result = Todo::create($data);
 
@@ -142,21 +144,31 @@ class TodoController extends Controller
 
     public function finished(Request $request, $id)
     {
-        $result = Todo::find($id)->update($request->all());
+        $update_finished = Todo::where('id', $id);
+        $isFinished = $update_finished->value('finished');
+
+        // 完了なら0を、未完了なら1を返す
+        if ($isFinished) {
+            $update = $update_finished->update(['finished' => 0]);
+        } else {
+            $update = $update_finished->update(['finished' => 1]);
+        }
         return redirect()->route('todo.index');
     }
 
-    public function finished_list()
+    public function finishedList()
     {
-        // $todos = User::query()
-        //     ->find(Auth::user()->id)
-        //     ->where('finished', true)
-        //     ->userTodos()
-        //     ->orderByDesc('deadline')
-        //     ->paginate(5);
-        $todos = [];
+        $todos = User::query()
+            ->find(Auth::user()->id)
+            ->userTodos()
+            ->where('finished', true)
+            ->orderByDesc('deadline')
+            ->paginate(5);
+
+        $id = Auth::user();
+        $todo = Todo::find($id);
 
         // ddd($todos);
-        return view('todo.index', compact('todos'));
+        return view('todo.index', compact('todos', 'todo'));
     }
 }
