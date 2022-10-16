@@ -2,6 +2,9 @@
 VSCodeでmarkdownをプレビューするときは、
 `.md`ファイルを編集している状態で、`Ctrl+K`, `V`を押すと、横の画面に表示される。
 
+##ショートカットキー
+Ctrl + P :ファイルを名前で検索
+
 
 # Git
 ## commit message
