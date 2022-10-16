@@ -21,6 +21,7 @@ class TodoController extends Controller
         $todos = User::query()
             ->find(Auth::user()->id)
             ->userTodos()
+            ->where('finished', false)
             ->orderByDesc('deadline')
             ->paginate(5);
 
@@ -156,6 +157,7 @@ class TodoController extends Controller
     public function isFinished($data)
     {
         // 完了なら0を、未完了なら1を返す
+
         if ($data) {
             return 0;
         } else {
