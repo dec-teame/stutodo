@@ -145,26 +145,12 @@ class TodoController extends Controller
     public function finished(Request $request, $id)
     {
         //完了の判定
-        $update_finished = Todo::where('id', $id);
-        $data = $update_finished->value('finished');  // 0 or 1
-        $update_finished_num = $this->isFinished($data);     // return 0 or 1
-        // ddd($update_finished_num);
-        $update_finished->update(['finished'=>$update_finished_num]);
-
-        return redirect()->route('todo.index');
+        $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
+        $data = $update_finished->value('finished');    // get finished column value
+        ddd($data);
+        $update_finished->update(['finished'=>!$data]); // DBのfinishedカラムの値を更新
+        return redirect()->route('todo.index');         // todo一覧画面へリダイレクト
     }
-    
-    public function isFinished($data)
-    {
-        // 完了なら0を、未完了なら1を返す
-
-        if ($data) {
-            return 0;
-        } else {
-            return 1;
-        }
-    }
-
 
 
     public function finishedList()
