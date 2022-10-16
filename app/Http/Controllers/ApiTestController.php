@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Google_Client;
 use Google_Service_Calendar;
 use Google_Service_Calendar_Event;
+use Illuminate\Support\Facades\Auth;
+use app\Services\CalendarService;
 
 class ApiTestController extends Controller
 {
@@ -21,12 +23,12 @@ class ApiTestController extends Controller
             'summary' => 'テスト',
             'start' => array(
                 // 開始日時
-                'dateTime' => '2020-08-23T11:00:00+09:00',
+                'dateTime' => '2022-10-23T11:00:00+09:00',
                 'timeZone' => 'Asia/Tokyo',
             ),
             'end' => array(
                 // 終了日時
-                'dateTime' => '2020-08-23T12:00:00+09:00',
+                'dateTime' => '2022-10-23T12:00:00+09:00',
                 'timeZone' => 'Asia/Tokyo',
             ),
         ));
@@ -34,6 +36,7 @@ class ApiTestController extends Controller
         $event = $service->events->insert($calendarId, $event);
         echo "イベントを追加しました";
     }
+
 
     private function getClient()
     {
@@ -47,5 +50,13 @@ class ApiTestController extends Controller
         $client->setAuthConfig(storage_path('app/api-key/stutodo-365607-8045e40822e2.json'));
 
         return $client;
+    }
+
+    public function list()
+    {
+        $user = Auth::user();
+        return view('todo.list', [
+            'events' => $this->service->getEventList($user->googleUser)
+        ]);
     }
 }

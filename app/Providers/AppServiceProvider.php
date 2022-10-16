@@ -13,7 +13,12 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->singleton(Google_Client::class, function () {
+            return new Google_Client([
+                'client_id' => config('services.google.client_id'),
+                'client_secret' => config('services.google.client_secret')
+            ]);
+        });
     }
 
     /**
