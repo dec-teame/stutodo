@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('todos', function (Blueprint $table) {
             //カラム追加
-            $table->boolean('finished');
+            $table->boolean('finished')->default(0);
         });
     }
 
