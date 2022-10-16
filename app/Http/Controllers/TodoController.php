@@ -147,7 +147,7 @@ class TodoController extends Controller
         //完了の判定
         $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
         $data = $update_finished->value('finished');    // get finished column value
-        ddd($data);
+        // ddd($data);
         $update_finished->update(['finished'=>!$data]); // DBのfinishedカラムの値を更新
         return redirect()->route('todo.index');         // todo一覧画面へリダイレクト
     }
