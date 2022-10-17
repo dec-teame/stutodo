@@ -39,6 +39,7 @@
             </main>
         </div>
     </body>
+    
     @if (Request::routeIs('todo.index')||Request::routeIs('todo.finishedList'))
         {{ $javascript }}
     @endif
