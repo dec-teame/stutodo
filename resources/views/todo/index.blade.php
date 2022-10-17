@@ -62,24 +62,25 @@
                                             </form>
                                             <!-- 完了ボタン -->
                                             
-                                            <form action="{{ route('todo.finished',$todo) }}" method="POST" class="text-left">
-                                            @csrf
+                                            {{-- <form action="{{ route('todo.finished',$todo) }}" method="POST" class="text-left">
+                                            @csrf --}}
                                             
-                                            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
+                                            {{-- <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline" onclick="isFinished('asdf')"> --}}
+                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline" onclick="isFinished('{{ route('todo.finished',$todo) }}')">
                                                 @if ($todo->finished === 0)
-                                                <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
-                                                stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                <path stroke="none" d="M0 0h24v24H0z"/>  
-                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
-                                                <rect x="9" y="3" width="6" height="4" rx="2" />
-                                                </svg>
+                                                    <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
+                                                    stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                    <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
+                                                    <rect x="9" y="3" width="6" height="4" rx="2" />
+                                                    </svg>
                                                 @else
-                                                <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
-                                                stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                <path stroke="none" d="M0 0h24v24H0z"/>  
-                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
-                                                <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
-                                                </svg>
+                                                    <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
+                                                    stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                    <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                    <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
+                                                    <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
+                                                    </svg>
                                                 @endif                                               
                                             </button>
                                             </form>
@@ -94,4 +95,50 @@
             </div>
         </div>
     </div>
+
+    <x-slot name="javascript">
+        <script type="text/javascript">
+            function isFinished(url) {
+                console.log(url)
+            // $('#isFinished').click(function () {
+
+                $.ajaxSetup({
+                    headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
+                });
+                $.ajax({
+                    // url: "{{ route('todo.finished',$todo) }}",
+                    url: url,
+                    method: "POST",
+                    dataType: "json",
+                    data: {},
+                })
+                .done(function(msg) {
+                    console.log(msg);
+                })
+                .fail(function(msg) {
+                    console.log(msg);
+                })
+            }
+            // });
+
+
+            // $('#isFinished').click(function () {
+            //     $.ajaxSetup({
+            //         headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
+            //     });
+            //     $.ajax({
+            //         url: "{{ route('todo.finished',$todo) }}",
+            //         method: "POST",
+            //         dataType: "json",
+            //         data: {},
+            //     })
+            //     .done(function(msg) {
+            //         console.log(msg);
+            //     })
+            //     .fail(function(msg) {
+            //         console.log(msg);
+            //     })
+            // });
+        </script>
+    </x-slot>
 </x-app-layout>
