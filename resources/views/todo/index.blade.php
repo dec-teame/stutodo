@@ -114,9 +114,6 @@
                 .done(function(msg) {
                     let removeRow = '#' + removeId;
                     $(removeRow).remove();
-                    console.log(removeId);
-                    console.log(msg);
-                    
                 })
                 .fail(function(msg) {
                     console.log('failed');
