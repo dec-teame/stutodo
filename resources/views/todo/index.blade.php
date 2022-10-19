@@ -99,9 +99,7 @@
     <x-slot name="javascript">
         <script type="text/javascript">
             function isFinished(url, removeId) {
-                console.log(url)
-            // $('#isFinished').click(function () {
-
+                // console.log(url)
                 $.ajaxSetup({
                     headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
                 });
@@ -112,7 +110,9 @@
                 })
                 .done(function(msg) {
                     let removeRow = '#' + removeId;
+                    console.log(msg);
                     $(removeRow).remove();
+                    // location.reload();
                 })
                 .fail(function(msg) {
                     console.log('failed');
@@ -120,8 +120,6 @@
                     console.log(msg.status);
                 })
             }
-            // });
-
         </script>
     </x-slot>
 </x-app-layout>
