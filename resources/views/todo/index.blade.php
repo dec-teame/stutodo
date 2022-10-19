@@ -7,15 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200" id="todoContent">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" id=todoContent1>
+                <div class="p-6 bg-white border-b border-gray-200" id="todoContent2">
                     {{ $todos->links() }}
                     <table class="text-center w-full border-collapse">
                         <thead>
                             <tr>
-                                <th
-                                    class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">
-                                    Todo</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">
+                                    Todo
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -63,13 +63,13 @@
                                             <!-- 完了ボタン -->
                                             @if (Request::routeIs('todo.index'))
                                             {{-- todo.indexなら、todo.finishedにアクセス後、todo.indexにリダイレクト --}}
-                                            <form action="{{ route('todo.finished',$todo) }}" method="POST" class="text-left">
+                                            <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
+                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}')">
                                             @else
                                             {{-- todo.finishedListならtodo.unfinishedにアクセス後、todo.finishedListにリダイレクト --}}
-                                            <form action="{{ route('todo.unfinished',$todo) }}" method="POST" class="text-left">
+                                            <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
+                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.unfinished',$todo) }}')">                                                
                                             @endif
-                                            @csrf
-                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}', 'todo{{ $todo->id }}')">
                                                 @if ($todo->finished === 0)
                                                     <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
                                                     stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
@@ -86,7 +86,7 @@
                                                     </svg>
                                                 @endif                                               
                                             </button>
-                                            </form>
+                                            {{-- </form> --}}
                                         </div>
                                     </td>
                                 </tr>
@@ -101,8 +101,8 @@
 
     <x-slot name="javascript">
         <script type="text/javascript">
-            function switchFinished(url, removeId) {
-                // console.log(url)
+            function switchFinished(url) {
+                console.log(url)
                 $.ajaxSetup({
                     headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
                 });
@@ -112,8 +112,8 @@
                     data: {},
                 })
                 .done(function(msg) {
-                    $("#todoContent").remove();
-                    $("#todoContent").html($(msg).find('#todoContent'));
+                    $("#todoContent1").html($(msg).find('#todoContent2'));
+                    console.log(msg)
                 })
                 .fail(function(msg) {
                     console.log('failed');
