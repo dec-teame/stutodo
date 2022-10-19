@@ -20,7 +20,7 @@
                         </thead>
                         <tbody>
                             @foreach ($todos as $todo)
-                                <tr class="hover:bg-grey-lighter">
+                                <tr class="hover:bg-grey-lighter" id="todo{{ $todo->id }}">
                                     <td class="py-4 px-6 border-b border-grey-light">
                                         <a href="{{ route('todo.show', $todo->id) }}">
                                             <h3 class="text-left font-bold text-lg text-grey-dark">Task:
@@ -66,7 +66,7 @@
                                             @csrf --}}
                                             
                                             {{-- <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline" onclick="isFinished('asdf')"> --}}
-                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline" onclick="isFinished('{{ route('todo.finished',$todo) }}')">
+                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline" onclick="isFinished('{{ route('todo.finished',$todo) }}', 'todo{{ $todo->id }}')">
                                                 @if ($todo->finished === 0)
                                                     <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
                                                     stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
@@ -98,7 +98,7 @@
 
     <x-slot name="javascript">
         <script type="text/javascript">
-            function isFinished(url) {
+            function isFinished(url, removeId) {
                 console.log(url)
             // $('#isFinished').click(function () {
 
@@ -106,39 +106,26 @@
                     headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
                 });
                 $.ajax({
-                    // url: "{{ route('todo.finished',$todo) }}",
                     url: url,
                     method: "POST",
-                    dataType: "json",
+                    // dataType: "json",
                     data: {},
                 })
                 .done(function(msg) {
+                    let removeRow = '#' + removeId;
+                    $(removeRow).remove();
+                    console.log(removeId);
                     console.log(msg);
+                    
                 })
                 .fail(function(msg) {
-                    console.log(msg);
+                    console.log('failed');
+                    console.log(removeId);
+                    console.log(msg.status);
                 })
             }
             // });
 
-
-            // $('#isFinished').click(function () {
-            //     $.ajaxSetup({
-            //         headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
-            //     });
-            //     $.ajax({
-            //         url: "{{ route('todo.finished',$todo) }}",
-            //         method: "POST",
-            //         dataType: "json",
-            //         data: {},
-            //     })
-            //     .done(function(msg) {
-            //         console.log(msg);
-            //     })
-            //     .fail(function(msg) {
-            //         console.log(msg);
-            //     })
-            // });
         </script>
     </x-slot>
 </x-app-layout>
