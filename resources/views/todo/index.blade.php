@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+                <div class="p-6 bg-white border-b border-gray-200" id="todoContent">
                     {{ $todos->links() }}
                     <table class="text-center w-full border-collapse">
                         <thead>
@@ -109,9 +109,11 @@
                     data: {},
                 })
                 .done(function(msg) {
-                    let removeRow = '#' + removeId;
-                    console.log(msg);
-                    $(removeRow).remove();
+                    // let removeRow = '#' + removeId;
+                    // console.log(msg);
+                    // $(removeRow).remove();
+                    // $("#todoContent").html($(msg).find('#todoContent').text());
+                    $("#todoContent").html($(msg).find('#todoContent'));
                     // location.reload();
                 })
                 .fail(function(msg) {
