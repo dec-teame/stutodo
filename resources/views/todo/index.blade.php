@@ -108,7 +108,6 @@
                 $.ajax({
                     url: url,
                     method: "POST",
-                    // dataType: "json",
                     data: {},
                 })
                 .done(function(msg) {
