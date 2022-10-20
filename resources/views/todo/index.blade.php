@@ -112,8 +112,8 @@
                     data: {},
                 })
                 .done(function(msg) {
+                    // todoContent2の値をtodoContent1以下に配置
                     $("#todoContent1").html($(msg).find('#todoContent2'));
-                    console.log(msg)
                 })
                 .fail(function(msg) {
                     console.log('failed');
