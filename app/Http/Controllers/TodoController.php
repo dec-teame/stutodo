@@ -154,7 +154,7 @@ class TodoController extends Controller
     {
         // 完了を未完了に変更
         $data = $this->updateFinishedColumn($id);
-        return redirect()->route('todo.finishedList');         // todo一覧画面へリダイレクト
+        return redirect()->route('todo.finishedList');         // todo.finishedList (完了タスク一覧)にリダイレクト
     }
 
 
