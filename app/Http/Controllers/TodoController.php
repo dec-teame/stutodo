@@ -146,10 +146,12 @@ class TodoController extends Controller
     {
         // 完了の判定
         // $temp = $this->updateFinishedColumn($id);
-        $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
-        // $data = $this->updateFinishedColumn($id);
-        $data = $update_finished->value('finished');    // get finished column value
-        $update_finished->update(['finished'=>!$data]);
+        // $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
+
+        $data = $this->updateFinishedColumn($id);
+
+        // $data = $update_finished->value('finished');    // get finished column value
+        // $update_finished->update(['finished'=>!$data]);
         
         return redirect()->route('todo.index');         // todo一覧画面へリダイレクト
     }
@@ -159,6 +161,7 @@ class TodoController extends Controller
     {
         // $temp = $this->updateFinishedColumn($id);
         $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
+        // dd($update_finished->value('finished'));
         $data = $update_finished->value('finished');    // get finished column value
         $update_finished->update(['finished'=>!$data]);
         return redirect()->route('todo.finishedList');         // todo一覧画面へリダイレクト
@@ -169,11 +172,10 @@ class TodoController extends Controller
     {
         // finishedカラムの値を反転させる関数
         $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
+        // ddd($update_finished->value('task'));
         $data = $update_finished->value('finished');    // get finished column value
-        // ddd($data);
-        // $update_finished->update(['finished'=>!$data]); // DBのfinishedカラムの値を更新
-        // return null;    // 何も返さない
-        return $data;
+        $update_finished->update(['finished'=>!$data]); // DBのfinishedカラムの値を更新
+        return null;    // 何も返さない
     }
 
 
