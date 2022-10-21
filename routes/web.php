@@ -19,6 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('todo/finishedList', [TodoController::class, 'finishedList'])->name('todo.finishedList');
     //タスク完了ボタンのURL
     Route::post('todo/{todo}/finished', [TodoController::class, 'finished'])->name('todo.finished');
+    Route::post('todo/{todo}/unfinished', [TodoController::class, 'unfinished'])->name('todo.unfinished');
     Route::resource('todo', TodoController::class);
     // Route::get('calendar', function(){return view('calendar');});
     // 下のnameは、RouteIsで使用する。

@@ -7,20 +7,20 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:w-10/12 md:w-8/10 lg:w-8/12">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg" id=todoContent1>
+                <div class="p-6 bg-white border-b border-gray-200" id="todoContent2">
                     {{ $todos->links() }}
                     <table class="text-center w-full border-collapse">
                         <thead>
                             <tr>
-                                <th
-                                    class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">
-                                    Todo</th>
+                                <th class="py-4 px-6 bg-grey-lightest font-bold uppercase text-lg text-grey-dark border-b border-grey-light">
+                                    Todo
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($todos as $todo)
-                                <tr class="hover:bg-grey-lighter">
+                                <tr class="hover:bg-grey-lighter" id="todo{{ $todo->id }}">
                                     <td class="py-4 px-6 border-b border-grey-light">
                                         <a href="{{ route('todo.show', $todo->id) }}">
                                             <h3 class="text-left font-bold text-lg text-grey-dark">Task:
@@ -60,29 +60,33 @@
                                                     </svg>
                                                 </button>
                                             </form>
+
                                             <!-- 完了ボタン -->
-                                            
-                                            <form action="{{ route('todo.finished',$todo) }}" method="POST" class="text-left">
-                                            @csrf
-                                            
-                                            <button type="submit" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 focus:outline-none focus:shadow-outline">
-                                                @if ($todo->finished === 0)
+                                            {{-- todo.index or todo.finishedListで、データの送信先を切り替え --}}
+                                            @if (Request::routeIs('todo.index'))
+                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
+                                                focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}')">
+                                            @else
+                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
+                                                focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.unfinished',$todo) }}')">
+                                            @endif
+                                            {{-- 完了 or 未完了でボタンのアイコンを切り替える --}}
+                                            @if ($todo->finished === 0)
                                                 <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
                                                 stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
                                                 <path stroke="none" d="M0 0h24v24H0z"/>  
                                                 <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
                                                 <rect x="9" y="3" width="6" height="4" rx="2" />
                                                 </svg>
-                                                @else
+                                            @else
                                                 <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
                                                 stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
                                                 <path stroke="none" d="M0 0h24v24H0z"/>  
                                                 <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
                                                 <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
                                                 </svg>
-                                                @endif                                               
+                                            @endif                                               
                                             </button>
-                                            </form>
                                         </div>
                                     </td>
                                 </tr>
@@ -94,4 +98,29 @@
             </div>
         </div>
     </div>
+
+    <x-slot name="javascript">
+        <script type="text/javascript">
+            function switchFinished(url) {
+                console.log(url)
+                $.ajaxSetup({
+                    headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}
+                });
+                $.ajax({
+                    url: url,
+                    method: "POST",
+                    data: {},
+                })
+                .done(function(msg) {
+                    // todoContent2の値をtodoContent1以下に配置
+                    $("#todoContent1").html($(msg).find('#todoContent2'));
+                })
+                .fail(function(msg) {
+                    console.log('failed');
+                    console.log(removeId);
+                    console.log(msg.status);
+                })
+            }
+        </script>
+    </x-slot>
 </x-app-layout>
