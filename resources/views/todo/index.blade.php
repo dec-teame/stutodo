@@ -62,28 +62,30 @@
                                             </form>
 
                                             <!-- 完了ボタン -->
+                                            {{-- todo.index or todo.finishedListで、データの送信先を切り替え --}}
                                             @if (Request::routeIs('todo.index'))
-                                            <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
-                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}')">
+                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
+                                                focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}')">
                                             @else
-                                            <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
-                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.unfinished',$todo) }}')">
+                                                <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
+                                                focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.unfinished',$todo) }}')">
                                             @endif
-                                                @if ($todo->finished === 0)
-                                                    <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
-                                                    stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                    <path stroke="none" d="M0 0h24v24H0z"/>  
-                                                    <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
-                                                    <rect x="9" y="3" width="6" height="4" rx="2" />
-                                                    </svg>
-                                                @else
-                                                    <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
-                                                    stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
-                                                    <path stroke="none" d="M0 0h24v24H0z"/>  
-                                                    <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
-                                                    <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
-                                                    </svg>
-                                                @endif                                               
+                                            {{-- 完了 or 未完了でボタンのアイコンを切り替える --}}
+                                            @if ($todo->finished === 0)
+                                                <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
+                                                stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
+                                                <rect x="9" y="3" width="6" height="4" rx="2" />
+                                                </svg>
+                                            @else
+                                                <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" 
+                                                stroke-width="2" stroke="green" fill="none" stroke-linecap="round" stroke-linejoin="round">  
+                                                <path stroke="none" d="M0 0h24v24H0z"/>  
+                                                <path d="M9 5H7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2V7a2 2 0 0 0 -2 -2h-2" />  
+                                                <rect x="9" y="3" width="6" height="4" rx="2" />  <path d="M9 14l2 2l4 -4" />
+                                                </svg>
+                                            @endif                                               
                                             </button>
                                         </div>
                                     </td>
