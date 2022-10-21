@@ -63,21 +63,12 @@
                                             <!-- 完了ボタン -->
                                             @if (Request::routeIs('todo.index'))
                                             {{-- todo.indexなら、todo.finishedにアクセス後、todo.indexにリダイレクト --}}
-                                            <form action="{{ route('todo.finished', $todo) }}" method="POST" class="text-left">
-                                            @csrf
                                             <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
-                                            focus:outline-none focus:shadow-outline">
-
-                                            {{-- <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
-                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}')"> --}}
+                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.finished',$todo) }}')">
                                             @else
                                             {{-- todo.finishedListならtodo.unfinishedにアクセス後、todo.finishedListにリダイレクト --}}
-                                            <form action="{{ route('todo.unfinished', $todo) }}" method="POST" class="text-left">
-                                            @csrf
                                             <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
-                                            focus:outline-none focus:shadow-outline">                                                
-                                            {{-- <button type="submit" id="isFinished" class="flex mr-2 ml-2 text-sm hover:bg-gray-200 hover:shadow-none text-red py-1 px-2 
-                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.unfinished',$todo) }}')">--}}
+                                            focus:outline-none focus:shadow-outline" onclick="switchFinished('{{ route('todo.unfinished',$todo) }}')">                                                
                                             @endif
                                                 @if ($todo->finished === 0)
                                                     <svg class="h-6 w-6 text-black"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" 
@@ -95,7 +86,7 @@
                                                     </svg>
                                                 @endif                                               
                                             </button>
-                                            </form>
+                                            {{-- </form> --}}
                                         </div>
                                     </td>
                                 </tr>
