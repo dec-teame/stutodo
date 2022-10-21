@@ -160,10 +160,11 @@ class TodoController extends Controller
     public function unfinished(Request $request, $id)
     {
         // $temp = $this->updateFinishedColumn($id);
-        $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
-        // dd($update_finished->value('finished'));
-        $data = $update_finished->value('finished');    // get finished column value
-        $update_finished->update(['finished'=>!$data]);
+        // $update_finished = Todo::where('id', $id);      // Todoテーブルから$idのデータを取得
+        // // dd($update_finished->value('finished'));
+        // $data = $update_finished->value('finished');    // get finished column value
+        // $update_finished->update(['finished'=>!$data]);
+        $data = $this->updateFinishedColumn($id);
         return redirect()->route('todo.finishedList');         // todo一覧画面へリダイレクト
     }
 
