@@ -1,3 +1,31 @@
+# VSCode
+VSCodeでmarkdownをプレビューするときは、
+`.md`ファイルを編集している状態で、`Ctrl+K`, `V`を押すと、横の画面に表示される。
+
+## ショートカットキー
+Ctrl + P :ファイルを名前で検索
+
+
+# Git
+## commit message
+参考: https://qiita.com/itosho/items/9565c6ad2ffc24c09364
+
+- fix：バグ修正
+- add：新規（ファイル）機能追加
+- update：機能修正（バグではない）
+- remove：削除（ファイル）
+
+```
+# commit messageのexample
+
+git add .
+git commit -m "[fix] UIのバグを修正"
+# git commit -m "[add] migrationファイルを追加"
+# git commit -m "[update] 詳細画面を修正"
+# git commit -m "[remove] migrationファイルを削除"
+```
+
+
 # laratter
 ## 開発環境
 - Laravel Sail（ララベル セイル）  
@@ -98,6 +126,10 @@ CSS が効いていない気がする．．という場合は下記コマンド�
 - app/Http/Controllers/TweetController.php の store()を編集
 - app/Models/Tweet.php に関数を作成
 - app/Http/Controllers/TweetController.php の index()を編集
+
+## fakeデータの作成
+- [[Laravel5.1]Fakerチートシート](https://qiita.com/tosite0345/items/1d47961947a6770053af)
+- [LaravelでFakerを使って、テストデータを作成する方法！](https://codelikes.com/laravel-faker/)
 
 
 ## オススメサイト
