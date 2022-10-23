@@ -12,7 +12,7 @@ class CreateTodoTest extends TestCase
     {
         $response = $this->get('/todo/create');
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
     public function test_inputValue_can_be_confirmed()

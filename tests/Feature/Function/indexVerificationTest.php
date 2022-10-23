@@ -13,9 +13,11 @@ class indexVerificationTest extends TestCase
 
     public function test_index_screen_can_be_rendered()
     {
+        $user = User::factory()->create();
+        
         $response = $this->get('/todo');
 
-        $response->assertStatus(200);
+        $response->assertStatus(302);
     }
 
     public function test_todo_can_be_edited()
