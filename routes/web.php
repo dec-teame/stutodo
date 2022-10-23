@@ -26,18 +26,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('calendar', [CalendarController::class, 'index'])->name('calendar.index');
 });
 
-//追加
-Route::prefix('auth')->middleware('guest')->group(function() {
-
-   Route::get('/{provider}', 'Auth\OAuthController@socialOAuth')
-       ->where('provider','google')
-       ->name('socialOAuth');
-
-    Route::get('/{provider}/callback', 'Auth\OAuthController@handleProviderCallback')
-        ->where('provider','google')
-        ->name('oauthCallback');
-});
-
 Route::get('/', function () {
     return view('welcome');
 });
